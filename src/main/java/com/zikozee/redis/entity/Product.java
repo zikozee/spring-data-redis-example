@@ -13,6 +13,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @RedisHash("Product")  //also used in repo
 public class Product implements Serializable {
+    //objects saved to cache must be serializable
 
     @Id
     private int id;
