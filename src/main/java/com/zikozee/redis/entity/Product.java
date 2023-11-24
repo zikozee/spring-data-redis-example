@@ -16,7 +16,7 @@ public class Product implements Serializable {
     //objects saved to cache must be serializable
 
     @Id
-    private int id;
+    private String id;
     private String name;
     private int qty;
     private long price;
