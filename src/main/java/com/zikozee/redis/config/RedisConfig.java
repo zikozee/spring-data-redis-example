@@ -1,6 +1,7 @@
 package com.zikozee.redis.config;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,15 +19,19 @@ import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer
 @EnableRedisRepositories
 @EnableCaching
 @RequiredArgsConstructor
+@Slf4j
 public class RedisConfig {
 
     private final Environment env;
 
     @Bean
     public JedisConnectionFactory connectionFactory(){
+        String host = env.getProperty("custom.redis.host", String.class);
+        int port = env.getProperty("custom.redis.port", Integer.class, 6379);
+        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  host: {}, port:{}", host, port);
         RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration();
-        configuration.setHostName(env.getProperty("custom.redis.host", String.class));
-        configuration.setPort(env.getProperty("custom.redis.port", Integer.class, 6379));
+        configuration.setHostName(host);
+        configuration.setPort(port);
         return new JedisConnectionFactory(configuration);
     }
 
