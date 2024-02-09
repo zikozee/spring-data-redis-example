@@ -40,6 +40,21 @@ jobs:
       - name: upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: jar-file
+          name: spring-data-redis-jar
           path: target/spring-data-redis-example-1.0.jar
+          overwrite: 'true'
+          retention-days: 7
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: spring-data-redis-jar
+      - name: Output contents
+        run: ls
+      - name: Deploy
+        run: echo "Deploying..."
 
