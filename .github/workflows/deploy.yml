@@ -50,9 +50,9 @@ jobs:
   push-image:
     needs: build
     runs-on: ubuntu-latest
-    env:
-      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+#    env:
+#      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+#      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     steps:
       - name: Get build artifact
         uses: actions/download-artifact@v4
@@ -65,13 +65,13 @@ jobs:
       - name: login
         uses: docker/login-action@v3
         with:
-          username: env.DOCKER_USERNAME
-          password: env.DOCKER_PASSWORD
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password:  ${{ secrets.DOCKER_PASSWORD }}
           # registry: default dockerhub
       - name: push image
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: spring-data-redis:latest
+          tags: spring-data-redis:1.0
 
 
