@@ -3,5 +3,5 @@ server:
 
 custom:
   redis:
-    host: ${HOST_REDIS:redis}
+    host: ${HOST_REDIS}
     port: 6379
