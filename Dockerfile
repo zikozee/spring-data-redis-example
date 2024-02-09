@@ -9,10 +9,11 @@ LABEL maintainer="Ezekiel Eromosei <ezekiel.eromosei@gmail.com>"
 # The application's jar file  - defines the JAR_FILE variable set by dockerfile-maven-plugin
 ARG JAR_FILE=target/*.jar
 
+COPY $JAR_FILE app.jar
+
 ENV JAVA_OPTS=""
 
-ENTRYPOINT exec java -javaagent:app-insights-agent.jar \
- -Djava.security.egd=file:/dev/./urandom \
+ENTRYPOINT exec java -Djava.security.egd=file:/dev/./urandom \
  -Dspring.profiles.active=$SPRING_PROFILE \
  -Dcustom.subsidiary=$JOHARI_SUBSIDIARY \
  -Dcustom.schema=$JOHARI_SCHEMA \
