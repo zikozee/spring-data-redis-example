@@ -15,6 +15,12 @@ jobs:
     env:
       HOST_REDIS: ${{ secrets.HOST_REDIS }}
 
+    services:
+      redis:
+        image: redis:alpine
+        ports:
+          - 6379:6379
+
     steps:
       - name: Get Code
         uses: actions/checkout@v4
@@ -26,9 +32,3 @@ jobs:
           cache: maven
       - name: Build with maven
         run: mvn clean package -Dspring-boot.run.profiles=${SPRING_PROFILE}
-
-    services:
-      redis:
-        image: redis:alpine
-        ports:
-          - 6379:6379
