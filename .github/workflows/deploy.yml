@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      HOST_REDIS: localhost
+      HOST_REDIS: ${{ secrets.HOST_REDIS }}
 
     services:
       redis:
