@@ -30,5 +30,8 @@ jobs:
           distribution: 'corretto'
           java-version: '11'
           cache: maven
+      - name: Output Information
+        run: echo "host for redis ${{ env.HOST_REDIS }}"
       - name: Build with maven
         run: mvn clean package -Dspring-boot.run.profiles=${SPRING_PROFILE}
+
