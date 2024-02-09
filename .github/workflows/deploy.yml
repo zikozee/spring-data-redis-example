@@ -70,7 +70,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: {{ secrets.DOCKER_USERNAME }}/spring-data-redis:1.0
+          tags: ${{ secrets.DOCKER_USERNAME }}/spring-data-redis:1.0
           context: .
           file: ./Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
