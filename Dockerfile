@@ -17,6 +17,7 @@
 ## DOCKR FILE FOR LAYERED JARS
 #FROM openjdk:21-slim as build
 FROM amazoncorretto:11 as build
+SHELL ["/bin/bash", "-c"]
 WORKDIR application
 ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} application.jar
