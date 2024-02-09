@@ -35,5 +35,5 @@ jobs:
       - name: Build with maven
         run: mvn clean package -Dspring-boot.run.profiles=${SPRING_PROFILE}
       - name: list files
-        run: ls /target/**
+        run: ls target/**
 
