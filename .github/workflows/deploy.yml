@@ -40,24 +40,29 @@ jobs:
       - name: upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: spring-data-redis-jar
+          name: spring-data-redis-artifact
           path: |
             target/spring-data-redis-example-1.0.jar
             Dockerfile
           overwrite: 'true'
           retention-days: 7
 
-  deploy:
+  push-image:
     needs: build
     runs-on: ubuntu-latest
+    env:
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     steps:
       - name: Get build artifact
         uses: actions/download-artifact@v4
         with:
-          name: spring-data-redis-jar
+          name: spring-data-redis-artifact
       - name: Output contents
         run: ls
-      - name: Deploy
-        run: echo "Deploying..."
+      - name: login
+        run: |
+          echo "logging in..."
+          echo "${{ env.DOCKER_PASSWORD }}" | docker login --username $env.DOCKER_USERNAME --password-stdin
 
 
