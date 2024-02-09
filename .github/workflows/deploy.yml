@@ -60,9 +60,13 @@ jobs:
           name: spring-data-redis-artifact
       - name: Output contents
         run: ls
+      - name: build Image
+        run: docker build -t spring-data-redis:1.0 .
       - name: login
         run: |
           echo "logging in..."
           echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
+      - name: push image
+        run: docker image push -t spring-data-redis:1.0
 
 
