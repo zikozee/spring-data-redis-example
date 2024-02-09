@@ -67,6 +67,6 @@ jobs:
           echo "logging in..."
           echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
       - name: push image
-        run: docker image push -t spring-data-redis:1.0
+        run: docker image push spring-data-redis:1.0
 
 

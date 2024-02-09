@@ -9,8 +9,15 @@ LABEL maintainer="Ezekiel Eromosei <ezekiel.eromosei@gmail.com>"
 # The application's jar file  - defines the JAR_FILE variable set by dockerfile-maven-plugin
 ARG JAR_FILE=target/*.jar
 
-#execute the application
-ENTRYPOINT ["java","-jar","/app.jar"]
+ENV JAVA_OPTS=""
+
+ENTRYPOINT exec java -javaagent:app-insights-agent.jar \
+ -Djava.security.egd=file:/dev/./urandom \
+ -Dspring.profiles.active=$SPRING_PROFILE \
+ -Dcustom.subsidiary=$JOHARI_SUBSIDIARY \
+ -Dcustom.schema=$JOHARI_SCHEMA \
+ -Duser.timezone=Africa/Lagos \
+ -jar app.jar
 
 ### DOCKR FILE FOR LAYERED JARS
 ##FROM openjdk:21-slim as build
