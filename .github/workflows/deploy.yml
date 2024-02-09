@@ -6,11 +6,14 @@ on:
 env:
   SPRING_PROFILE: action
 
+
 jobs:
   build:
     environment: dev
     runs-on: ubuntu-latest
 
+    env:
+      HOST_REDIS: ${{ secrets.HOST_REDIS }}
 
     steps:
       - name: Get Code
