@@ -63,10 +63,15 @@ jobs:
       - name: build Image
         run: docker build -t spring-data-redis:1.0 .
       - name: login
-        run: |
-          echo "logging in..."
-          echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
+        uses: docker/login-action@v3
+        with:
+          username: env.DOCKER_USERNAME
+          password: env.DOCKER_PASSWORD
+          # registry: default dockerhub
       - name: push image
-        run: docker image push spring-data-redis:1.0
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          tags: spring-data-redis:latest
 
 
