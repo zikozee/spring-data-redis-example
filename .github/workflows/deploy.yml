@@ -23,7 +23,7 @@ jobs:
 
     steps:
       - name: show profile
-        run: echo ${{env.SPRING_PROFILE}}
+        run: echo ${{ vars.SPRING_PROFILE }}
       - name: Get Code
         uses: actions/checkout@v4
       - name: Set up JDK 11
