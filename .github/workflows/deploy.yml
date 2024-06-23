@@ -35,7 +35,7 @@ jobs:
       - name: Output Information
         run: echo "host for redis ${{ env.HOST_REDIS }}"
       - name: Build with maven
-        run: mvn clean package -Dspring-boot.run.profiles=${{ vars.SPRING_PROFILE }}
+        run: mvn clean package -Dspring-boot.run.profiles=${SPRING_PROFILE}
       - name: list files
         run: ls target/**
 
