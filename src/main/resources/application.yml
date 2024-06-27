@@ -1,3 +1,9 @@
 spring:
   profiles:
     active: ${SPRING_PROFILE:local}
+
+logging:
+  level:
+    org:
+      zalando:
+        logbook: trace
