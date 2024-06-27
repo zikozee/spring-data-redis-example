@@ -6,4 +6,4 @@ logging:
   level:
     org:
       zalando:
-        logbook: trace
+        logbook: TRACE
